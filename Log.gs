@@ -1,0 +1,3 @@
+function logId(text, value) {
+  
+}
