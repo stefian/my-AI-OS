@@ -1,3 +1,6 @@
+// © Ianta Labs / MIT License
+// W3AI.net - AI OS
+
 function onOpen(e) {
   SpreadsheetApp.getUi() // Or DocumentApp or FormApp.
       .createMenu('my AI')
@@ -59,10 +62,17 @@ function CLI() {
   cmdCol = tab.getRange(cmdColPos).getValue();
   // cmdCol = Number(cmdCol);
   var cmd = tab.getRange(cmdRow, cmdCol).getValue();
+  
+  var cmdArgs = cmd.split(' ');
+  // Logger.log(cmdArgs);
+  
+  // Parse and execute command
+  interpreter(cmd);
+  
   cmdRow++;
   tab.getRange(cmdRow, cmdCol-1).setValue(prompt);
   tab.getRange(cmdRowPos).setValue(cmdRow);
-  tab.getRange(cmdRow, cmdCol).activateAsCurrentCell();
+  // tab.getRange(cmdRow, cmdCol).activateAsCurrentCell();
   tab.getRange(cursorPosition).setValue('R' + cmdRow + 'C' + cmdCol);
   log('cmd: ' + cmd);
   
